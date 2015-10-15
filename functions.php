@@ -7,7 +7,7 @@ function theme_enqueue_styles() {
 
 // Custom Function to Include
 function favicon_link() {
-    echo '<link rel="shortcut icon" type="image/x-icon" href="www.here.com" />' . "\n";
+    echo '<link rel="Shortcut Icon" type="image/x-icon" href="'.get_bloginfo('stylesheet_directory').'/favicon.ico" />' . "\n";
 }
 
 add_action( 'wp_head', 'favicon_link' );
