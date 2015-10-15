@@ -5,6 +5,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <?php
+        if (get_the_post_thumbnail()) {
+            echo '<figure>'. get_the_post_thumbnail() .'</figure>';
+        }
+    ?>
     <header class="entry-header">
         <h1 id="page-title"><?php the_title(); ?></h1>
         <?php
@@ -58,20 +63,6 @@
                 );
         ?>
     </div><!--.entry-->
-    <p class="postmetadata">
-        <?php
-            _e('Posted on <time datetime="','a11yall');
-            echo date('Y-m-d') . '">';
-            the_time('F j, Y');
-            _e('</time> by ','a11yall');
-            the_author_link();
-            echo '<br />';
-            _e('Categories: ','a11yall');
-            the_category(', ');
-            echo '<br />';
-            the_tags();
-        ?>
-    </p>
     <?php
         $editpost =  sprintf( __('Edit This Post' , 'a11yall') );
         edit_post_link($editpost, '<p class="button editlink">', '</p>');
