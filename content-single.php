@@ -62,10 +62,10 @@
             }
             // Check for post_category = artist disability and medium
             if (get_field('artist_disability')) {
-                echo '<h4 class="artist-info disability">'; the_field('artist_disability'); echo '</h4>';
+                echo '<p class="artist-info disability"><strong>Disability: </strong>'; the_field('artist_disability'); echo '</p>';
             }
             if (get_field('artist_medium')) {
-                echo '<h4 class="artist-info medium">'; the_field('artist_medium'); echo '</h4>';
+                echo '<p class="artist-info medium"><strong>Medium: </strong>'; the_field('artist_medium'); echo '</p>';
             }
             // Used on all post pages.
             the_content();
