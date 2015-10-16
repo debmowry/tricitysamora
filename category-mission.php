@@ -14,7 +14,7 @@
 
         <?php
             // Sorts the engage posts by post title.
-            global $query_string; query_posts($query_string . '&orderby=title&order=ASC');
+            global $query_string; query_posts($query_string . '&orderby=mission_order&order=ASC');
         ?>
 
         <h1 id="category-title">On Mission</h1>
