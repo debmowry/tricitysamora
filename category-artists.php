@@ -13,15 +13,15 @@
     <?php if ( have_posts() ) : ?>
 
         <?php
-            // Sorts the on mission posts by order of appearance field.
-            global $query_string; query_posts($query_string . '&orderby=mission_order&order=ASC');
+            // Sorts the artists posts by post title.
+            global $query_string; query_posts($query_string . '&orderby=title&order=ASC');
         ?>
 
-        <h1 id="category-title">On Mission</h1>
+        <h1 id="category-title">Artists</h1>
 
         <?php while ( have_posts() ) : the_post(); ?>
             <?php $posttitle = get_post_field('post_title'); ?>
-            <?php if ($posttitle === 'On Mission Category Introduction') : ?>
+            <?php if ($posttitle === 'Artist Listing Introduction') : ?>
                 <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
                     <div class="entry">
                         <?php
@@ -37,7 +37,7 @@
 
         <?php while ( have_posts() ) : the_post(); ?>
             <?php $posttitle = get_post_field('post_title'); ?>
-            <?php if ($posttitle !== 'On Mission Category Introduction') : ?>
+            <?php if ($posttitle !== 'Artist Listing Introduction') : ?>
                 <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
                     <div class="entry">
                         <?php get_template_part( 'content', 'single' ); ?>

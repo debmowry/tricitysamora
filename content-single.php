@@ -60,6 +60,13 @@
             if (get_field('event_artist')) {
                 echo '<h3 class="theartist">'; the_field('event_artist'); echo '</h3>';
             }
+            // Check for post_category = artist disability and medium
+            if (get_field('artist_disability')) {
+                echo '<h4 class="artist-info disability">'; the_field('artist_disability'); echo '</h4>';
+            }
+            if (get_field('artist_medium')) {
+                echo '<h4 class="artist-info medium">'; the_field('artist_medium'); echo '</h4>';
+            }
             // Used on all post pages.
             the_content();
                 wp_link_pages( array(
