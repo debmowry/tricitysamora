@@ -1,4 +1,6 @@
-.category-happenings figure {
+.category-happenings figure,
+.category-mission figure {
     float: left;
+    margin-right: 10px;
     width: 150px;
 }
