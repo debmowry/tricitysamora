@@ -5,3 +5,9 @@
     margin-right: 10px;
     width: 150px;
 }
+
+.category-donors figure {
+    float: right;
+    margin-left: 10px;
+    width: 100px;
+}
