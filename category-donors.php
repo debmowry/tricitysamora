@@ -35,7 +35,21 @@
             <?php endif; ?>
         <?php endwhile; ?>
 
-        <section><h3>Gold Level Donors</h3><ul>
+        <?php $isdonorlevelused = ''; ?>
+        <?php while ( have_posts() ) : the_post(); ?>
+            <?php
+                $donorlevel = get_post_field('donor_level');
+                if ($donorlevel !== '') {
+                    $isdonorlevelused .= $donorlevel;
+                }
+            ?>
+        <?php endwhile; ?>
+
+        <?php
+            $isgold = $issilver = $isbronze = $isdonorlevelused;
+        ?>
+
+        <?php if (strpos($isgold, 'Gold')) { echo '<section><h3>Gold Level Donors</h3><ul>'; } ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <?php
                 $posttitle = get_post_field('post_title');
@@ -56,7 +70,7 @@
         <?php endwhile; ?>
         </ul></section>
 
-        <section><h3>Silver Level Donors</h3><ul>
+        <?php if (strrpos($issilver, 'Silver')) { echo '<section><h3>Silver Level Donors</h3><ul>'; } ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <?php
                 $posttitle = get_post_field('post_title');
@@ -77,7 +91,7 @@
         <?php endwhile; ?>
         </ul></section>
 
-        <section><h3>Bronze Level Donors</h3><ul>
+        <?php if (strrpos($isbronze, 'Bronze')) { echo '<section><h3>Bronze Level Donors</h3><ul>'; } ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <?php
                 $posttitle = get_post_field('post_title');
