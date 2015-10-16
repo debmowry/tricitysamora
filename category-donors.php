@@ -47,6 +47,8 @@
 
         <?php
             $isgold = $issilver = $isbronze = $isdonorlevelused;
+            // Makes sure that no headings are displayed if no donor has been entered.
+            if ($isdonorlevelused === 'Do Not List') { $isdonorlevelused = '';}
         ?>
 
         <?php if (strpos($isgold, 'Gold')) { echo '<section><h3>Gold Level Donors</h3><ul>'; } ?>
@@ -112,7 +114,7 @@
         <?php endwhile; ?>
         </ul></section>
 
-        <section><h3>All Donations are Honored</h3><ul>
+        <?php if ($isdonorlevelused !== '') { echo '<section><h3>All Donations are Honored</h3><ul>'; } ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <?php
                 $posttitle = get_post_field('post_title');
