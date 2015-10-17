@@ -6,8 +6,9 @@
     width: 150px;
 }
 
-.category-donors figure {
-    float: right;
+.category-donors figure,
+.category-volunteers figure {
+    float: left;
     margin-left: 10px;
     width: 100px;
 }
