@@ -38,6 +38,7 @@
         <?php while ( have_posts() ) : the_post(); ?>
             <?php $posttitle = get_post_field('post_title'); ?>
             <?php if ($posttitle !== 'Engage Category Introduction') : ?>
+                <?php if (!(in_category('Art Collectors') || in_category('Artists') || in_category('Donors') || in_category('Volunteers'))) : ?>
                 <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
                     <div class="entry">
                         <?php get_template_part( 'content', 'single' ); ?>
@@ -58,6 +59,7 @@
                     ?>
                 </article>
                 <hr />
+                <?php endif; ?>
             <?php endif; ?>
         <?php endwhile; ?>
 
