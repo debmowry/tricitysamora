@@ -38,7 +38,7 @@
         <?php while ( have_posts() ) : the_post(); ?>
             <?php $posttitle = get_post_field('post_title'); ?>
             <?php if ($posttitle !== 'Engage Category Introduction') : ?>
-                <?php if (!(in_category('Art Collectors') || in_category('Artists') || in_category('Donors') || in_category('Volunteers'))) : ?>
+                <?php if (!(in_category('Artists')) && !(in_category('Donors')) && !(in_category('Volunteers'))) : ?>
                 <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
                     <div class="entry">
                         <?php get_template_part( 'content', 'single' ); ?>
@@ -62,6 +62,7 @@
                 <?php endif; ?>
             <?php endif; ?>
         <?php endwhile; ?>
+        <?php the_posts_pagination( array('mid_size' => 1, 'screen_reader_text' => 'Posts navigation') ); ?>
 
     <?php else : ?>
         <h1><?php _e( 'Not Found', 'a11yall' );?></h1>
