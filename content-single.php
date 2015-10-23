@@ -14,7 +14,12 @@
         <h1 id="page-title"><?php the_title(); ?></h1>
         <?php
             // Check for post_category = exhibit subtitle
-            if(get_field('event_subtitle')) { echo '<h2 class="subtitle">'; the_field('event_subtitle'); echo '</h2>'; }
+            if(get_field('event_subtitle')) {
+                echo '<h2 class="subtitle">'; the_field('event_subtitle'); echo '</h2>';
+            }
+            if (get_field('mission_subtitle')) {
+                echo '<h2 class="subtitle">'; the_field('mission_subtitle'); echo '</h2>';
+            }
         ?>
     </header>
     <div class="entry clearfix">
@@ -55,6 +60,14 @@
             if (get_field('event_artist')) {
                 echo '<h3 class="theartist">'; the_field('event_artist'); echo '</h3>';
             }
+            // Check for post_category = artist disability and medium
+            if (get_field('artist_disability')) {
+                echo '<p class="artist-info disability"><strong>Disability: </strong>'; the_field('artist_disability'); echo '</p>';
+            }
+            if (get_field('artist_medium')) {
+                echo '<p class="artist-info medium"><strong>Medium: </strong>'; the_field('artist_medium'); echo '</p>';
+            }
+            // Used on all post pages.
             the_content();
                 wp_link_pages( array(
                     'before' => '<p class="page-links">' . __( 'Pages: ', 'a11yall' ),
