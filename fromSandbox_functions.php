@@ -27,13 +27,16 @@ function displayDayCalendar(){
 add_shortcode('displayDayCalendar', 'displayDayCalendar');
 
 
-$clientLibraryPath = '/var/www/html/ImagineArt/google-api-php-client/src';
+$clientLibraryPath = '/home3/staceyr1/public_html/imagineart/google-api-php-client/src';
 $oldPath = set_include_path(get_include_path() . PATH_SEPARATOR . $clientLibraryPath);
-echo get_include_path();
-error_reporting(E_ALL ^ E_NOTICE);
-ini_set('display_errors', 1);
-echo "<br>";
+
+// use this when debugging
+//echo get_include_path();
+//error_reporting(E_ALL ^ E_NOTICE);
+//ini_set('display_errors', 1);
+//echo "<br>";
 require 'Google/autoload.php';
+
 
 function displayListFormat_func(){
  $client = new Google_Client();
