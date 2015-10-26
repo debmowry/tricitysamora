@@ -116,6 +116,9 @@ if ($atts['format']  == 'day'){
       } //end if count
     else {
       foreach ($results->getItems() as $event) {
+      $eventVisibility = $event->visibility;
+        //$displayHTML .= $eventVisibility;
+        if ($eventVisibility=='public' || $eventVisibility==null){
         $start = $event->start->dateTime;
         $end = $event->end->dateTime;
         if (empty($start)) 
@@ -142,7 +145,8 @@ if ($atts['format']  == 'day'){
             $displayHTML .= $event->getSummary(). "</a><br>";
 
             $previousStart = $start;
-          }
+          }//end else date heading
+        }//end if visibility
               
       }//end for each
     }//end else 
