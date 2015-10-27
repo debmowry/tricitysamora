@@ -28,10 +28,31 @@ function displayDayCalendar(){
 }
 add_shortcode('displayDayCalendar', 'displayDayCalendar');
 
+function check_browser(){
+
+
+$displayHTML = '<b>Nice modern browser you got there!</b>';
+$displayHTML =  $_SERVER['HTTP_USER_AGENT']."<br>";
+$browser = get_browser();
+$displayHTML .= $browser;
+
+
+
+  return  $displayHTML;
+}
+
+
+add_shortcode('check_browser', 'check_browser');
 
 //SET the following variables in wp-config file
 // public or limited calendar to view ie google account
 //define('CALENDAR_ID', 'ENTERADDRESSHERE@gmail.com');
+
+//SET the following variables in wp-config file
+// this is for SUB calendars find the address within calendar settings
+//public or limited calendar to view ie google account
+//define('CALENDAR_ID_2', 'ENTERHERE@gmail.com');
+
 
 //The Google API to access the google account above from this from console.developer.google.com 
 //define('GOOGLE_API', 'ENTERAPICODE_HERE');
@@ -57,7 +78,15 @@ function displayGCalender_func($atts){
  $atts = shortcode_atts(
     array(
       'format' => 'list',
+      'calendar' => 'default'
     ), $atts, 'displayListFormat_func' );
+
+if ($atts['calendar']  == 'default'){
+   $calendarToWorkWith = CALENDAR_ID; 
+}
+else if ($atts['calendar']  == 'special_happenings'){
+  $calendarToWorkWith = CALENDAR_ID_2; 
+}
 
 
  $client = new Google_Client();
@@ -81,7 +110,7 @@ if ($atts['format']  == 'list'){
     'singleEvents' => TRUE,
     'timeMin' => date('c'),
     );
-    $results = $gdataCal->events->listEvents(CALENDAR_ID, $optParams);
+    $results = $gdataCal->events->listEvents($calendarToWorkWith, $optParams);
   }// end if list
 
   if ($atts['format']  == 'weekly'){
@@ -95,7 +124,7 @@ if ($atts['format']  == 'list'){
     'timeMin' => $today,
     'timeMax' => $weekly,
   );
-  $results = $gdataCal->events->listEvents(CALENDAR_ID, $optParams);
+  $results = $gdataCal->events->listEvents($calendarToWorkWith, $optParams);
   }// end if weekly
 
 if ($atts['format']  == 'day'){
@@ -108,7 +137,7 @@ if ($atts['format']  == 'day'){
     'timeMin' => $today,
     'timeMax' => $tomorrow,
   );
-  $results = $gdataCal->events->listEvents(CALENDAR_ID, $optParams);
+  $results = $gdataCal->events->listEvents($calendarToWorkWith, $optParams);
 }//end if day
 
     if (count($results->getItems()) == 0) {
@@ -116,7 +145,7 @@ if ($atts['format']  == 'day'){
       } //end if count
     else {
       foreach ($results->getItems() as $event) {
-      $eventVisibility = $event->visibility;
+        $eventVisibility = $event->visibility;
         //$displayHTML .= $eventVisibility;
         if ($eventVisibility=='public' || $eventVisibility==null){
         $start = $event->start->dateTime;
@@ -151,6 +180,7 @@ if ($atts['format']  == 'day'){
       }//end for each
     }//end else 
 
+$displayHTML .=  "<a href =\"https://calendar.google.com/calendar/embed?src=".$calendarToWorkWith."&ctz=America/Chicago;\"> Link to Calendar</a>";
 return $displayHTML;
 }//end of function
 
